@@ -4,11 +4,7 @@ using System.Text;
 
 namespace HelloWorld
 {
-    struct Player
-    {
-        public int health;
-        public int damage;
-    }
+    
 
     struct Item
     {
