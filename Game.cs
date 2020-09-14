@@ -22,7 +22,7 @@ namespace HelloWorld
         Item longSword;
         Item dagger;
 
-        //Run the game
+        //Run the game, ugly
         public void Run()
         {
             Start();
