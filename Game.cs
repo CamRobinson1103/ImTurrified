@@ -13,8 +13,8 @@ namespace HelloWorld
     class Game
     {
         bool _gameOver = false;
-        Player _player1 = new Player("Ron", 101, 21);
-        Player _player2 = new Player("Kam", 150,20);
+        Player _player1;
+        Player _player2;
         Item longSword;
         Item dagger;
 
@@ -91,6 +91,15 @@ namespace HelloWorld
             Console.WriteLine("Player 2");
             _player2.PrintStats();
         }
+
+        public void CreateCharacter(Player player)
+        {
+            Console.WriteLine("What's ya neimu?");
+            string name = Console.ReadLine();
+            player = new Player(name, 100, 10);
+            SelectItems(player);
+        }
+
         
         public void ClearScreen()
         {
@@ -162,7 +171,8 @@ namespace HelloWorld
         //Repeated until the game ends
         public void Update()
         {
-
+            CreateCharacter(_player1);
+            CreateCharacter(_player2);
             SelectItems();
             StartBattle();
         }
