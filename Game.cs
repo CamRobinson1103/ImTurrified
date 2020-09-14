@@ -102,8 +102,61 @@ namespace HelloWorld
             }
             Console.WriteLine("Player 2");
             PrintStats(_player2);
+        }
+        
+        
+
+        public void StartBattle()
+        {
+            Console.WriteLine("Move along now!");
+
+            while (_player1.health > 0 && _player2.health > 0)
+            {
+                Console.WriteLine("Player 1");
+                PrintStats(_player1);
+                Console.WriteLine("Player 2");
+                PrintStats(_player2);
+
+                char input;
+                GetInput(out input, "Attack", "Beg for mercy", "Your turn Player 1");
+
+                if(input == '1')
+                {
+                    _player2.health -= _player1.damage;
+                    Console.WriteLine("Player 2 took " + _player1.damage + " damage");
+                }
+                else
+                {
+                    Console.WriteLine("I BEG FOR MERCY!!!");
+                }
+
+                GetInput(out input, "Attack", "Beg for mercy", "Your turn Player 2");
+
+                if (input == '1')
+                {
+                    _player1.health -= _player2.damage;
+                    Console.WriteLine("Player 1 took " + _player2.damage + " damage");
+                }
+                else
+                {
+                    Console.WriteLine("I BEG FOR MERCY!!!");
+                }
+                Console.Clear();
+            }
+            if(_player1.health> 0 )
+            {
+                Console.WriteLine("Player 1 is vinegaritourious!!");
+            }
+            else
+            {
+                Console.WriteLine("Player 2 is vinegaritourious!!");
+            }
+            _gameOver = true;
+
+
 
         }
+
 
         public void PrintStats(Player player)
         {
@@ -115,15 +168,16 @@ namespace HelloWorld
         //Performed once when the game begins
         public void Start()
         {
-            
+            InitializedPlayers();
+            InitializedItems();
         }
 
         //Repeated until the game ends
         public void Update()
         {
-            InitializedPlayers();
-            InitializedItems();
+            
             EquiptItems();
+            StartBattle();
         }
 
         //Performed once when the game ends
