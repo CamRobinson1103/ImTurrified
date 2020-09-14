@@ -33,11 +33,11 @@ namespace HelloWorld
 
         public void InitializedPlayers()
         {
-            _player1.health = 100;
-            _player1.damage = 5;
+            _player1._health = 100;
+            _player1._damage = 5;
 
-            _player2.health = 100;
-            _player2.damage = 5;
+            _player2._health = 100;
+            _player2._damage = 5;
         }
 
         public void InitializedItems()
@@ -77,11 +77,11 @@ namespace HelloWorld
             //Equipts item based on input value
             if(input == '1')
             {
-                _player1.damage += longSword.statBoost;
+                _player1._damage += longSword.statBoost;
             }
             else if (input == '2')
             {
-                _player1.damage += dagger.statBoost;
+                _player1._damage += dagger.statBoost;
             }
             Console.WriteLine("Player 1");
             PrintStats(_player1);
@@ -90,11 +90,11 @@ namespace HelloWorld
 
             if (input == '1')
             {
-                _player2.damage += longSword.statBoost;
+                _player2._damage += longSword.statBoost;
             }
             else if (input == '2')
             {
-                _player2.damage += dagger.statBoost;
+                _player2._damage += dagger.statBoost;
             }
             Console.WriteLine("Player 2");
             PrintStats(_player2);
@@ -106,7 +106,7 @@ namespace HelloWorld
         {
             Console.WriteLine("Move along now!");
 
-            while (_player1.health > 0 && _player2.health > 0)
+            while (_player1._health > 0 && _player2._health > 0)
             {
                 Console.WriteLine("Player 1");
                 PrintStats(_player1);
@@ -118,8 +118,8 @@ namespace HelloWorld
 
                 if(input == '1')
                 {
-                    _player2.health -= _player1.damage;
-                    Console.WriteLine("Player 2 took " + _player1.damage + " damage");
+                    _player2._health -= _player1._damage;
+                    Console.WriteLine("Player 2 took " + _player1._damage + " _damage");
                 }
                 else
                 {
@@ -130,8 +130,8 @@ namespace HelloWorld
 
                 if (input == '1')
                 {
-                    _player1.health -= _player2.damage;
-                    Console.WriteLine("Player 1 took " + _player2.damage + " damage");
+                    _player1._health -= _player2._damage;
+                    Console.WriteLine("Player 1 took " + _player2._damage + " _damage");
                 }
                 else
                 {
@@ -139,7 +139,7 @@ namespace HelloWorld
                 }
                 Console.Clear();
             }
-            if(_player1.health> 0 )
+            if(_player1._health> 0 )
             {
                 Console.WriteLine("Player 1 is vinegaritourious!!");
             }
@@ -156,8 +156,8 @@ namespace HelloWorld
 
         public void PrintStats(Player player)
         {
-            Console.WriteLine("Health: " + player.health);
-            Console.WriteLine("Damage: " + player.damage);
+            Console.WriteLine("Health: " + player._health);
+            Console.WriteLine("Damage: " + player._damage);
         }
 
 

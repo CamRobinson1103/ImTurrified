@@ -6,17 +6,53 @@ namespace HelloWorld
 {
     class Player
     {
+        private string _name;
+        private int _health;
+        private int _damage;
+
         public Player()
         {
-            health = 100;
-            damage = 10;
+            _health = 100;
+            _damage = 10;
         }
-        public Player(int healthVal, int damageVal)
+
+        public Player(string nameVal, int healthVal, int damageVal)
         {
-            health = healthVal;
-            damage = damageVal;
+            _name = nameVal;
+            _health = healthVal;
+            _damage = damageVal;
         }
-        public int health;
-        public int damage;
+
+        public void EquipItem(Item weapon)
+        {
+            _damage += weapon.statBoost;
+        }
+
+        public string GetName()
+        {
+            return _name;
+        }
+       
+        public bool GetIsAlive()
+        {
+            return _health > 0;
+        }
+
+        public void Attack(Player enemy)
+        {
+            enemy.TakeDamage(_damage);
+        }
+
+        private void TakeDamage(int damageVal)
+        {
+            if (GetIsAlive());
+            {
+                _health -= damageVal;
+            }
+        }
     }
+
+
+
+     
 }
