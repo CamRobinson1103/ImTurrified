@@ -43,12 +43,20 @@ namespace HelloWorld
             enemy.TakeDamage(_damage);
         }
 
+        public void PrintStats()
+        {
+            Console.WriteLine("Name: " + _name);
+            Console.WriteLine("Health: " + _health);
+            Console.WriteLine("Damage: " + _damage);
+        }
+
         private void TakeDamage(int damageVal)
         {
             if (GetIsAlive());
             {
                 _health -= damageVal;
             }
+            Console.WriteLine(_name + " took " + damageVal + " damage.");
         }
     }
 

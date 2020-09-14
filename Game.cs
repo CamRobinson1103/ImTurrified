@@ -13,8 +13,8 @@ namespace HelloWorld
     class Game
     {
         bool _gameOver = false;
-        Player _player1 = new Player(20,150);
-        Player _player2 = new Player(150,20);
+        Player _player1 = new Player("Ron", 101, 21);
+        Player _player2 = new Player("Kam", 150,20);
         Item longSword;
         Item dagger;
 
@@ -31,14 +31,6 @@ namespace HelloWorld
             End();
         }
 
-        public void InitializedPlayers()
-        {
-            _player1._health = 100;
-            _player1._damage = 5;
-
-            _player2._health = 100;
-            _player2._damage = 5;
-        }
 
         public void InitializedItems()
         {
@@ -69,7 +61,7 @@ namespace HelloWorld
 
             input = Console.ReadKey().KeyChar;
         }
-        public void EquiptItems()
+        public void SelectItems()
         {
             //Gets input from player 1
             char input;
@@ -77,27 +69,27 @@ namespace HelloWorld
             //Equipts item based on input value
             if(input == '1')
             {
-                _player1._damage += longSword.statBoost;
+                _player1.EquipItem(longSword);
             }
             else if (input == '2')
             {
-                _player1._damage += dagger.statBoost;
+                _player1.EquipItem(dagger);
             }
             Console.WriteLine("Player 1");
-            PrintStats(_player1);
+            _player1.PrintStats();
 
             GetInput(out input, "LongSword", "Dagger", "Hurry and pick a weapon!");
 
             if (input == '1')
             {
-                _player2._damage += longSword.statBoost;
+                _player2.EquipItem(longSword);
             }
             else if (input == '2')
             {
-                _player2._damage += dagger.statBoost;
+                _player2.EquipItem(dagger);
             }
             Console.WriteLine("Player 2");
-            PrintStats(_player2);
+            _player2.PrintStats();
         }
         
         
@@ -106,20 +98,19 @@ namespace HelloWorld
         {
             Console.WriteLine("Move along now!");
 
-            while (_player1._health > 0 && _player2._health > 0)
+            while (_player1.GetIsAlive()  && _player2.GetIsAlive())
             {
                 Console.WriteLine("Player 1");
-                PrintStats(_player1);
+                _player1.PrintStats();
                 Console.WriteLine("Player 2");
-                PrintStats(_player2);
+                _player2.PrintStats();
 
                 char input;
                 GetInput(out input, "Attack", "Beg for mercy", "Your turn Player 1");
 
                 if(input == '1')
                 {
-                    _player2._health -= _player1._damage;
-                    Console.WriteLine("Player 2 took " + _player1._damage + " _damage");
+                    _player1.Attack(_player2);
                 }
                 else
                 {
@@ -130,8 +121,7 @@ namespace HelloWorld
 
                 if (input == '1')
                 {
-                    _player1._health -= _player2._damage;
-                    Console.WriteLine("Player 1 took " + _player2._damage + " _damage");
+                    _player2.Attack(_player1);
                 }
                 else
                 {
@@ -139,7 +129,7 @@ namespace HelloWorld
                 }
                 Console.Clear();
             }
-            if(_player1._health> 0 )
+            if(_player1.GetIsAlive())
             {
                 Console.WriteLine("Player 1 is vinegaritourious!!");
             }
@@ -154,25 +144,20 @@ namespace HelloWorld
         }
 
 
-        public void PrintStats(Player player)
-        {
-            Console.WriteLine("Health: " + player._health);
-            Console.WriteLine("Damage: " + player._damage);
-        }
+        
 
 
         //Performed once when the game begins
         public void Start()
         {
-            InitializedPlayers();
             InitializedItems();
         }
 
         //Repeated until the game ends
         public void Update()
         {
-            
-            EquiptItems();
+
+            SelectItems();
             StartBattle();
         }
 
