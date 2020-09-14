@@ -92,7 +92,13 @@ namespace HelloWorld
             _player2.PrintStats();
         }
         
-        
+        public void ClearScreen()
+        {
+            Console.WriteLine("Press any key to continue");
+            Console.WriteLine("> ");
+            Console.ReadKey();
+            Console.Clear();
+        }
 
         public void StartBattle()
         {
