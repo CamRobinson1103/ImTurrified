@@ -97,7 +97,7 @@ namespace HelloWorld
             Console.WriteLine("What's ya neimu?");
             string name = Console.ReadLine();
             player = new Player(name, 100, 10);
-            SelectItems(player);
+            SelectItem(player);
         }
 
         
