@@ -6,12 +6,16 @@ namespace HelloWorld
 {
     class Player
     {
-        Player()
+        public Player()
         {
             health = 100;
             damage = 10;
         }
-
+        public Player(int healthVal, int damageVal)
+        {
+            health = healthVal;
+            damage = damageVal;
+        }
         public int health;
         public int damage;
     }

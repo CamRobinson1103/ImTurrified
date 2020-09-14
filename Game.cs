@@ -13,12 +13,12 @@ namespace HelloWorld
     class Game
     {
         bool _gameOver = false;
-        Player _player1;
-        Player _player2;
+        Player _player1 = new Player(20,150);
+        Player _player2 = new Player(150,20);
         Item longSword;
         Item dagger;
 
-        //Run the game, ugly
+        //Run the game
         public void Run()
         {
             Start();
