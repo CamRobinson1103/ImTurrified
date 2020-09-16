@@ -32,7 +32,7 @@ namespace HelloWorld
         {
             return _name;
         }
-       
+
         public bool GetIsAlive()
         {
             return _health > 0;
@@ -52,15 +52,11 @@ namespace HelloWorld
 
         private void TakeDamage(int damageVal)
         {
-            if (GetIsAlive());
+            if (GetIsAlive())
             {
                 _health -= damageVal;
             }
-            Console.WriteLine(_name + " took " + damageVal + " damage.");
+            Console.WriteLine(_name + " took " + damageVal + " damage!!!");
         }
     }
-
-
-
-     
 }

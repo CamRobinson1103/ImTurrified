@@ -111,7 +111,7 @@ namespace HelloWorld
                 //Player 1 turn start
                 //Get player input
                 char input;
-                GetInput(out input, "Attack", "NO", "Your turn Player 1");
+                GetInput(out input, "Attack", "BEG FOR MERCY", "Your turn Player 1");
 
                 if (input == '1')
                 {
@@ -122,7 +122,7 @@ namespace HelloWorld
                     Console.WriteLine("BEG FOR MERCY");
                 }
 
-                GetInput(out input, "Attack", "NO", "Your turn Player 2");
+                GetInput(out input, "Attack", "BEG FOR MERCY", "Your turn Player 2");
 
                 if (input == '1')
                 {
