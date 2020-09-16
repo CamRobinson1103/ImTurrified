@@ -18,8 +18,9 @@ namespace HelloWorld
         private Player _player1;
         private Player _player2;
         private Enemy _slime;
-        private Item _longSword;
-        private Item _dagger;
+        private Item _appleCoreAxe;
+        private Item _orangeSlicer;
+        private Item _bananarang;
         
 
         //Run the game
@@ -38,26 +39,28 @@ namespace HelloWorld
 
         public void InitializeItems()
         {
-            _longSword.statBoost = 15;
-            _dagger.statBoost = 10;
+            _appleCoreAxe.statBoost = 20;
+            _orangeSlicer.statBoost = 15;
+            _bananarang.statBoost = 10;
         }
 
         //Displays two options to the player. Outputs the choice of the two options
-        public void GetInput(out char input, string option1, string option2, string query)
+        public void GetInput(out char input, string option1, string option2, string option3, string query)
         {
             //Print description to console
             Console.WriteLine(query);
             //print options to console
-            Console.WriteLine("1." + option1);
-            Console.WriteLine("2." + option2);
+            Console.WriteLine("[1] " + option1);
+            Console.WriteLine("[2] " + option2);
+            Console.WriteLine("[3] " + option3);
             Console.Write("> ");
 
             input = ' ';
             //loop until valid input is received
-            while (input != '1' && input != '2')
+            while (input != '1' && input != '2' && input != '3')
             {
                 input = Console.ReadKey().KeyChar;
-                if (input != '1' && input != '2')
+                if (input != '1' && input != '2' && input != '3')
                 {
                     Console.WriteLine("Invalid Input");
                 }
@@ -69,15 +72,19 @@ namespace HelloWorld
         {
             //Get input for player one
             char input;
-            GetInput(out input, "Longsword", "Dagger", "OI! Hurry and choose a weapon!");
+            GetInput(out input, "Apple Core Axe", "Orange Slicer", "Bananarang", "OI! Hurry and choose a weapon!");
             //Equip item based on input value
             if (input == '1')
             {
-                player.EquipItem(_longSword);
+                player.EquipItem(_appleCoreAxe);
             }
             else if (input == '2')
             {
-                player.EquipItem(_dagger);
+                player.EquipItem(_orangeSlicer);
+            }
+            else if (input == '3')
+            {
+                player.EquipItem(_bananarang);
             }
         }
 
@@ -113,7 +120,7 @@ namespace HelloWorld
                 //Player 1 turn start
                 //Get player input
                 char input;
-                GetInput(out input, "Attack", "BEG FOR MERCY", "Your turn Player 1");
+                GetInput(out input, "Attack", "Defend", "BEG FOR MERCY", "Your turn Player 1");
 
                 if (input == '1')
                 {
@@ -124,7 +131,7 @@ namespace HelloWorld
                     Console.WriteLine("BEG FOR MERCY");
                 }
 
-                GetInput(out input, "Attack", "BEG FOR MERCY", "Your turn Player 2");
+                GetInput(out input, "Attack", "Defend", "BEG FOR MERCY", "Your turn Player 2");
 
                 if (input == '1')
                 {
@@ -138,7 +145,7 @@ namespace HelloWorld
             }
             if (_player1.GetIsAlive())
             {
-                Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!! Player 1 wons");
+                Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!! Player 1 wins!!!");
             }
             else
             {
@@ -158,7 +165,7 @@ namespace HelloWorld
                 Console.WriteLine("Enemy");
                 _slime.PrintStats();
                 char input;
-                GetInput(out input, "Attack", "BEG FOR MERCY", "Your turn Player 1");
+                GetInput(out input, "Attack", "Defend", "BEG FOR MERCY", "What will you do?");
 
                 if (input == '1')
                 {
