@@ -4,8 +4,15 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Weapons
+    class Item
     {
-
+        public int statBoost;
     }
+    private Item appleCoreAxe;
+
+
 }
+
+   
+
+    

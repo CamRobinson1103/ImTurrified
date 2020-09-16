@@ -17,9 +17,10 @@ namespace HelloWorld
         private bool _gameOver = false;
         private Player _player1;
         private Player _player2;
+        private Enemy _slime;
         private Item _longSword;
         private Item _dagger;
-        private Enemy Slime;
+        
 
         //Run the game
         public void Run()
@@ -105,7 +106,7 @@ namespace HelloWorld
             while (_player1.GetIsAlive() && _player2.GetIsAlive())
             {
                 //print player stats to console
-                Console.WriteLine("Player1");
+                Console.WriteLine("Player 1");
                 _player1.PrintStats();
                 Console.WriteLine("Player2");
                 _player2.PrintStats();
@@ -146,6 +147,31 @@ namespace HelloWorld
             ClearScreen();
             _gameOver = true;
         }
+        public void SlimeBattle()
+        {
+            ClearScreen();
+            Console.WriteLine("A wild Slime has appeared!");
+            while (_player1.GetIsAlive() && _slime.GetIsAlive())
+            {
+                Console.WriteLine("Player 1");
+                _player1.PrintStats();
+                Console.WriteLine("Enemy");
+                _slime.PrintStats();
+                char input;
+                GetInput(out input, "Attack", "BEG FOR MERCY", "Your turn Player 1");
+
+                if (input == '1')
+                {
+                    _player1.Attack(_player2);
+                }
+                else
+                {
+                    Console.WriteLine("BEG FOR MERCY");
+                }
+            }
+
+
+        }
 
 
         //Performed once when the game begins
@@ -160,6 +186,7 @@ namespace HelloWorld
             _player1 = CreateCharacter();
             _player2 = CreateCharacter();
             StartBattle();
+            SlimeBattle();
         }
 
         //Performed once when the game ends
