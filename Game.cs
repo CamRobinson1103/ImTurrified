@@ -81,7 +81,7 @@ namespace HelloWorld
 
         public Player CreateCharacter()
         {
-            Console.WriteLine("Watu  isu ya neimu?");
+            Console.WriteLine("Watu isu ya neimu?");
             string name = Console.ReadLine();
             Player player = new Player(name, 100, 10);
             SelectItem(player);
@@ -136,11 +136,11 @@ namespace HelloWorld
             }
             if (_player1.GetIsAlive())
             {
-                Console.WriteLine("Player 1 wins!!1!1!!11!11?");
+                Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!! Player 1 wons");
             }
             else
             {
-                Console.WriteLine("Player 2 wins??????????");
+                Console.WriteLine("...woo Player 2 wins, I guess...");
             }
             ClearScreen();
             _gameOver = true;

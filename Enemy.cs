@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HelloWorld
 {
-    class Enemy
+    public class Enemy
     {
         private int _slimeHealth;
         private int _slimeDamage;
@@ -14,7 +14,6 @@ namespace HelloWorld
         {
             _slimeHealth = 3;
             _slimeDamage = 5;
-
         }
 
 
