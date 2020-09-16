@@ -21,6 +21,7 @@ namespace HelloWorld
         private Item _appleCoreAxe;
         private Item _orangeSlicer;
         private Item _bananarang;
+        private Item[] _Inventory;
         
 
         //Run the game
@@ -76,15 +77,15 @@ namespace HelloWorld
             //Equip item based on input value
             if (input == '1')
             {
-                player.EquipItem(_appleCoreAxe);
+                player.AddItemToInventory(_appleCoreAxe, 0);
             }
             else if (input == '2')
             {
-                player.EquipItem(_orangeSlicer);
+                player.AddItemToInventory(_orangeSlicer, 0);
             }
             else if (input == '3')
             {
-                player.EquipItem(_bananarang);
+                player.AddItemToInventory(_bananarang,0);
             }
         }
 
@@ -92,7 +93,7 @@ namespace HelloWorld
         {
             Console.WriteLine("Watu isu ya neimu?");
             string name = Console.ReadLine();
-            Player player = new Player(name, 100, 10);
+            Player player = new Player(name, 100, 10,5);
             SelectItem(player);
             return player;
         }
