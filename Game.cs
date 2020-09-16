@@ -4,135 +4,125 @@ using System.Text;
 
 namespace HelloWorld
 {
-    
+
 
     struct Item
     {
         public int statBoost;
     }
+
+
     class Game
     {
-        bool _gameOver = false;
-        Player _player1;
-        Player _player2;
-        Item longSword;
-        Item dagger;
+        private bool _gameOver = false;
+        private Player _player1;
+        private Player _player2;
+        private Item _longSword;
+        private Item _dagger;
 
         //Run the game
         public void Run()
         {
             Start();
 
-            while(_gameOver == false)
+            while (_gameOver == false)
             {
                 Update();
             }
 
             End();
+
         }
 
-
-        public void InitializedItems()
+        public void InitializeItems()
         {
-            longSword.statBoost = 15;
-            dagger.statBoost = 10;
+            _longSword.statBoost = 15;
+            _dagger.statBoost = 10;
         }
-        //Displays Options
-        public void GetInput (out char input, string option1, string option2, string query)
+
+        //Displays two options to the player. Outputs the choice of the two options
+        public void GetInput(out char input, string option1, string option2, string query)
         {
-            //Prints description
+            //Print description to console
             Console.WriteLine(query);
-            //Prints options
-            Console.WriteLine("[1]" + option1);
-            Console.WriteLine("[2]" + option2);
-            Console.WriteLine("> ");
+            //print options to console
+            Console.WriteLine("1." + option1);
+            Console.WriteLine("2." + option2);
+            Console.Write("> ");
 
             input = ' ';
-            //Loops until recieved
+            //loop until valid input is received
             while (input != '1' && input != '2')
             {
                 input = Console.ReadKey().KeyChar;
-                if(input != '1' && input != '2')
+                if (input != '1' && input != '2')
                 {
                     Console.WriteLine("Invalid Input");
                 }
-       
             }
-
-            input = Console.ReadKey().KeyChar;
         }
-        public void SelectItems()
+
+        //Equip items to both players in the beginning of the game
+        public void SelectItem(Player player)
         {
-            //Gets input from player 1
+            //Get input for player one
             char input;
-            GetInput(out input, "LongSword", "Dagger", "Hurry and pick a weapon!");
-            //Equipts item based on input value
-            if(input == '1')
-            {
-                _player1.EquipItem(longSword);
-            }
-            else if (input == '2')
-            {
-                _player1.EquipItem(dagger);
-            }
-            Console.WriteLine("Player 1");
-            _player1.PrintStats();
-
-            GetInput(out input, "LongSword", "Dagger", "Hurry and pick a weapon!");
-
+            GetInput(out input, "Longsword", "Dagger", "OI! Hurry and choose a weapon!");
+            //Equip item based on input value
             if (input == '1')
             {
-                _player2.EquipItem(longSword);
+                player.EquipItem(_longSword);
             }
             else if (input == '2')
             {
-                _player2.EquipItem(dagger);
+                player.EquipItem(_dagger);
             }
-            Console.WriteLine("Player 2");
-            _player2.PrintStats();
         }
 
-        public void CreateCharacter(Player player)
+        public Player CreateCharacter()
         {
-            Console.WriteLine("What's ya neimu?");
+            Console.WriteLine("Watu  isu ya neimu?");
             string name = Console.ReadLine();
-            player = new Player(name, 100, 10);
+            Player player = new Player(name, 100, 10);
             SelectItem(player);
+            return player;
         }
 
-        
         public void ClearScreen()
         {
             Console.WriteLine("Press any key to continue");
-            Console.WriteLine("> ");
+            Console.Write("> ");
             Console.ReadKey();
             Console.Clear();
         }
 
         public void StartBattle()
         {
-            Console.WriteLine("Move along now!");
+            ClearScreen();
+            Console.WriteLine("Now GO!");
 
-            while (_player1.GetIsAlive()  && _player2.GetIsAlive())
+            while (_player1.GetIsAlive() && _player2.GetIsAlive())
             {
-                Console.WriteLine("Player 1");
+                //print player stats to console
+                Console.WriteLine("Player1");
                 _player1.PrintStats();
-                Console.WriteLine("Player 2");
+                Console.WriteLine("Player2");
                 _player2.PrintStats();
-
+                //Player 1 turn start
+                //Get player input
                 char input;
-                GetInput(out input, "Attack", "Beg for mercy", "Your turn Player 1");
+                GetInput(out input, "Attack", "NO", "Your turn Player 1");
 
-                if(input == '1')
+                if (input == '1')
                 {
                     _player1.Attack(_player2);
                 }
                 else
                 {
-                    Console.WriteLine("I BEG FOR MERCY!!!");
+                    Console.WriteLine("BEG FOR MERCY");
                 }
 
-                GetInput(out input, "Attack", "Beg for mercy", "Your turn Player 2");
+                GetInput(out input, "Attack", "NO", "Your turn Player 2");
 
                 if (input == '1')
                 {
@@ -140,47 +130,41 @@ namespace HelloWorld
                 }
                 else
                 {
-                    Console.WriteLine("I BEG FOR MERCY!!!");
+                    Console.WriteLine("BEG FOR MERCY");
                 }
                 Console.Clear();
             }
-            if(_player1.GetIsAlive())
+            if (_player1.GetIsAlive())
             {
-                Console.WriteLine("Player 1 is vinegaritourious!!");
+                Console.WriteLine("Player 1 wins!!1!1!!11!11?");
             }
             else
             {
-                Console.WriteLine("Player 2 is vinegaritourious!!");
+                Console.WriteLine("Player 2 wins??????????");
             }
+            ClearScreen();
             _gameOver = true;
-
-
-
         }
-
-
-        
 
 
         //Performed once when the game begins
         public void Start()
         {
-            InitializedItems();
+            InitializeItems();
         }
 
         //Repeated until the game ends
         public void Update()
         {
-            CreateCharacter(_player1);
-            CreateCharacter(_player2);
-            SelectItems();
+            _player1 = CreateCharacter();
+            _player2 = CreateCharacter();
             StartBattle();
         }
 
         //Performed once when the game ends
         public void End()
         {
-            
+
         }
     }
 }
