@@ -19,6 +19,7 @@ namespace HelloWorld
         private Player _player2;
         private Item _longSword;
         private Item _dagger;
+        private Enemy Slime;
 
         //Run the game
         public void Run()
