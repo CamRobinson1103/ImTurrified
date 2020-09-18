@@ -84,6 +84,16 @@ namespace HelloWorld
         //Equip items to both players in the beginning of the game
         public void SelectLoadout(Player player)
         {
+            Console.Clear();
+            Console.WriteLine("Loadout 1 : ");
+            Console.WriteLine(_appleCoreAxe.name);
+            Console.WriteLine(_orangeSlicer.name);
+            Console.WriteLine(_bananarang.name);
+
+            Console.WriteLine("\nLoadout 2 : ");
+            Console.WriteLine(_appleCoreAxe.name);
+            Console.WriteLine(_orangeSlicer.name);
+            Console.WriteLine(_cherryBomb.name);
             //Get input for player one
             char input;
             GetInput(out input, "Loadout1", "Loadout2", "Bananarang", "OI! Hurry and choose a Fruit Basket!");

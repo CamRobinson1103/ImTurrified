@@ -9,12 +9,15 @@ namespace HelloWorld
         private int _baseDamage;
         private Item[] _inventory;
         private Item _currentWeapon;
+        private Item _hands;
 
         public Player()
         {
+            _inventory = new Item[3];
             _health = 100;
             _baseDamage = 10;
-            _inventory = new Item[3];
+            _hands.name = "These God-given hands";
+            _hands.statBoost = 0;
         }
 
         public Player(string nameVal, int healthVal, int damageVal, int InventorySize)
@@ -23,6 +26,9 @@ namespace HelloWorld
             _health = healthVal;
             _baseDamage = damageVal;
             _inventory = new Item[InventorySize];
+            _hands.name = "These God-given hands";
+            _hands.statBoost = 0;
+
         }
 
         public Item[] GetInventory()
@@ -65,10 +71,15 @@ namespace HelloWorld
             return _health > 0;
         }
 
+        public void UnequpiItem(int itemIndex)
+        {
+            _currentWeapon = _hands;
+        }
+
         public void Attack(Player enemy)
         {
             int totalDamage = _baseDamage + _currentWeapon.statBoost;
-            enemy.TakeDamage(_baseDamage);
+            enemy.TakeDamage(_totalDamage);
         }
 
         public void PrintStats()
