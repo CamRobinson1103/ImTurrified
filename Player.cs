@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HelloWorld
 {
@@ -8,13 +6,14 @@ namespace HelloWorld
     {
         private string _name;
         private int _health;
-        private int _damage;
+        private int _baseDamage;
         private Item[] _inventory;
+        private Item _currentWeapon;
 
         public Player()
         {
             _health = 100;
-            _damage = 10;
+            _baseDamage = 10;
             _inventory = new Item[3];
         }
 
@@ -22,7 +21,7 @@ namespace HelloWorld
         {
             _name = nameVal;
             _health = healthVal;
-            _damage = damageVal;
+            _baseDamage = damageVal;
             _inventory = new Item[InventorySize];
         }
 
@@ -37,9 +36,23 @@ namespace HelloWorld
             _inventory[index] = item;
         }
 
+        public bool Container(int itemIndex)
+        {
+            if(itemIndex > 0 && itemIndex <4)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void EquipItem(int itemIndex)
         {
-            _damage = _inventory[itemIndex].statBoost;
+            if (Container(itemIndex) == true)
+            {
+                _currentWeapon = _inventory[itemIndex];
+            }
+
+            
         }
 
         public string GetName()
@@ -54,14 +67,15 @@ namespace HelloWorld
 
         public void Attack(Player enemy)
         {
-            enemy.TakeDamage(_damage);
+            int totalDamage = _baseDamage + _currentWeapon.statBoost;
+            enemy.TakeDamage(_baseDamage);
         }
 
         public void PrintStats()
         {
             Console.WriteLine("Name: " + _name);
             Console.WriteLine("Health: " + _health);
-            Console.WriteLine("Damage: " + _damage);
+            Console.WriteLine("Damage: " + _baseDamage);
         }
 
         private void TakeDamage(int damageVal)

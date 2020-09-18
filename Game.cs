@@ -24,7 +24,9 @@ namespace HelloWorld
         private Item _bananarang;
         private Item _cherryBomb;
         private Item[] _inventory;
-        
+        private Item currentWeapon;
+
+
 
         //Run the game
         public void Run()
@@ -124,7 +126,7 @@ namespace HelloWorld
 
 
             char input;
-            GetInput(out input, _inventory[0].name, _inventory[1].name, _inventory[2].name, "Choose ypur weapon");
+            GetInput(out input, _inventory[0].name, _inventory[1].name, _inventory[2].name, "Choose your weapon");
 
             switch(input)
             {
@@ -158,21 +160,20 @@ namespace HelloWorld
                 //Player 1 turn start
                 //Get player input
                 char input;
-                GetInput(out input, "Attack", "Change Weapon", "BEG FOR MERCY", "Your turn Player 1");
+                GetInput(out input, "Attack", "Change Fruit", "BEG FOR MERCY", "Your turn Player 1");
 
                 if (input == '1')
                 {
                     _player1.Attack(_player2);
                 }
 
-
-
                 else
                 {
-                    Console.WriteLine("BEG FOR MERCY");
+                    FruitBasket(_player1);
                 }
 
-                GetInput(out input, "Attack", "Change Weapon", "BEG FOR MERCY", "Your turn Player 2");
+
+                GetInput(out input, "Attack", "Change Fruit", "BEG FOR MERCY", "Your turn Player 2");
 
                 if (input == '1')
                 {
