@@ -37,7 +37,6 @@ namespace HelloWorld
             return _inventory;
         }
 
-
         public void AddItemToInventory(Item item, int index)
         {
             _inventory[index] = item;
@@ -45,7 +44,7 @@ namespace HelloWorld
 
         public bool Container(int itemIndex)
         {
-            if(itemIndex > 0 && itemIndex <4)
+            if(itemIndex > 0 && itemIndex < _inventory.Length)
             {
                 return true;
             }

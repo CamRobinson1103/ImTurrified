@@ -71,7 +71,7 @@ namespace HelloWorld
             while (input != '1' && input != '2' && input != '3' && input != '4')
             {
                 input = Console.ReadKey().KeyChar;
-                if (input != '1' && input != '2' && input != '3')
+                if (input != '1' && input != '2' && input != '3' && input != '4')
                 {
                     Console.WriteLine("Invalid Input");
                 }
@@ -117,7 +117,7 @@ namespace HelloWorld
         {
             Console.WriteLine("Watu isu ya neimu?");
             string name = Console.ReadLine();
-            Player player = new Player(name, 100, 10,5);
+            Player player = new Player(name, 100, 10,3);
             SelectLoadout(player);
             return player;
         }
@@ -132,11 +132,18 @@ namespace HelloWorld
 
         public void FruitBasket(Player player)
         {
-            Item[] arr = player.GetInventory();
+            Item[] _inventory = player.GetInventory();
 
 
-            char input;
-            GetInput(out input, _inventory[0].name, _inventory[1].name, _inventory[2].name, "Choose your weapon");
+            char input = ' ';
+            //Prints out options
+            for(int i = 0; i < _inventory.Length; i++ )
+            {
+                Console.WriteLine(i  + ". " + _inventory[i].name + " \n Damage: " + _inventory[1].statBoost);
+            }
+            Console.WriteLine("> ");
+
+            input = Console.ReadKey().KeyChar;
 
             switch(input)
             {
