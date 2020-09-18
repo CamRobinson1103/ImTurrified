@@ -53,7 +53,7 @@ namespace HelloWorld
 
         public void EquipItem(int itemIndex)
         {
-            if (Container(itemIndex) == true)
+            if (Container(itemIndex))
             {
                 _currentWeapon = _inventory[itemIndex];
             }
