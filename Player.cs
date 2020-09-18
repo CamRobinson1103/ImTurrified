@@ -7,9 +7,10 @@ namespace HelloWorld
         private string _name;
         private int _health;
         private int _baseDamage;
+        private int _totalDamage;
         private Item[] _inventory;
         private Item _currentWeapon;
-        private Item _hands;
+        private Item _hands; 
 
         public Player()
         {
@@ -71,7 +72,7 @@ namespace HelloWorld
             return _health > 0;
         }
 
-        public void UnequpiItem(int itemIndex)
+        public void UnequipItem(int itemIndex)
         {
             _currentWeapon = _hands;
         }

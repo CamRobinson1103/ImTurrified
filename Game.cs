@@ -96,7 +96,7 @@ namespace HelloWorld
             Console.WriteLine(_cherryBomb.name);
             //Get input for player one
             char input;
-            GetInput(out input, "Loadout1", "Loadout2", "Bananarang", "OI! Hurry and choose a Fruit Basket!");
+            GetInput(out input, "Loadout 1", "Loadout 2", "Bananarang", "OI! Hurry and choose a Fruit Basket!");
             //Equip item based on input value
             if (input == '1')
             {
@@ -142,15 +142,29 @@ namespace HelloWorld
             {
                 case '1':
                     player.EquipItem(0);
+                    Console.WriteLine("You equiped " + _inventory[0].name);
+                    Console.WriteLine("base damage increaded by " + _inventory[0].statBoost);
                     break;
 
                 case '2':
                     player.EquipItem(1);
+                    Console.WriteLine("You equiped " + _inventory[1].name);
+                    Console.WriteLine("base damage increaded by " + _inventory[1].statBoost);
                     break;
 
                 case '3':
                     player.EquipItem(2);
+                    Console.WriteLine("You equiped " + _inventory[2].name);
+                    Console.WriteLine("base damage increaded by " + _inventory[2].statBoost);
                     break;
+
+                default:
+                    player.UnequipItem(3);
+                    Console.WriteLine("You fumbled the bag and dropped your weapon!");
+                    break;
+
+               
+                    
             }
 
         }
@@ -158,7 +172,7 @@ namespace HelloWorld
         public void StartBattle()
         {
             ClearScreen();
-            Console.WriteLine("Now GO!");
+            Console.WriteLine("LET'S GET ITTT!!!");
 
             while (_player1.GetIsAlive() && _player2.GetIsAlive())
             {
@@ -191,7 +205,7 @@ namespace HelloWorld
                 }
                 else
                 {
-                    Console.WriteLine("BEG FOR MERCY");
+                    FruitBasket(_player2);
                 }
                 Console.Clear();
             }
