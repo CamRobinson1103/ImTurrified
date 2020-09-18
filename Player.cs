@@ -26,6 +26,12 @@ namespace HelloWorld
             _inventory = new Item[InventorySize];
         }
 
+        public Item[] GetInventory()
+        {
+            return _inventory;
+        }
+
+
         public void AddItemToInventory(Item item, int index)
         {
             _inventory[index] = item;

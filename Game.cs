@@ -8,6 +8,7 @@ namespace HelloWorld
 
     struct Item
     {
+        public string name;
         public int statBoost;
     }
 
@@ -21,7 +22,8 @@ namespace HelloWorld
         private Item _appleCoreAxe;
         private Item _orangeSlicer;
         private Item _bananarang;
-        private Item[] _Inventory;
+        private Item _cherryBomb;
+        private Item[] _inventory;
         
 
         //Run the game
@@ -40,9 +42,15 @@ namespace HelloWorld
 
         public void InitializeItems()
         {
+            _appleCoreAxe.name = "Apple Core Axe";
+            _orangeSlicer.name = "Orange Slicer";
+            _bananarang.name = "Bananarang";
+            _cherryBomb.name = "Cherry Bomb";
+
             _appleCoreAxe.statBoost = 20;
             _orangeSlicer.statBoost = 15;
             _bananarang.statBoost = 10;
+            _cherryBomb.statBoost = 20;
         }
 
         //Displays two options to the player. Outputs the choice of the two options
@@ -58,7 +66,7 @@ namespace HelloWorld
 
             input = ' ';
             //loop until valid input is received
-            while (input != '1' && input != '2' && input != '3')
+            while (input != '1' && input != '2' && input != '3' && input != '4')
             {
                 input = Console.ReadKey().KeyChar;
                 if (input != '1' && input != '2' && input != '3')
@@ -68,25 +76,29 @@ namespace HelloWorld
             }
         }
 
+
+
+
         //Equip items to both players in the beginning of the game
-        public void SelectItem(Player player)
+        public void SelectLoadout(Player player)
         {
             //Get input for player one
             char input;
-            GetInput(out input, "Apple Core Axe", "Orange Slicer", "Bananarang", "OI! Hurry and choose a weapon!");
+            GetInput(out input, "Loadout1", "Loadout2", "Bananarang", "OI! Hurry and choose a Fruit Basket!");
             //Equip item based on input value
             if (input == '1')
             {
                 player.AddItemToInventory(_appleCoreAxe, 0);
+                player.AddItemToInventory(_orangeSlicer, 1);
+                player.AddItemToInventory(_bananarang, 2);
             }
-            else if (input == '2')
+            else if (input == '2') 
             {
-                player.AddItemToInventory(_orangeSlicer, 0);
+                player.AddItemToInventory(_appleCoreAxe, 0);
+                player.AddItemToInventory(_orangeSlicer, 1);
+                player.AddItemToInventory(_cherryBomb, 2);
             }
-            else if (input == '3')
-            {
-                player.AddItemToInventory(_bananarang,0);
-            }
+           
         }
 
         public Player CreateCharacter()
@@ -94,7 +106,7 @@ namespace HelloWorld
             Console.WriteLine("Watu isu ya neimu?");
             string name = Console.ReadLine();
             Player player = new Player(name, 100, 10,5);
-            SelectItem(player);
+            SelectLoadout(player);
             return player;
         }
 
@@ -104,6 +116,31 @@ namespace HelloWorld
             Console.Write("> ");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        public void FruitBasket(Player player)
+        {
+            Item[] arr = player.GetInventory();
+
+
+            char input;
+            GetInput(out input, _inventory[0].name, _inventory[1].name, _inventory[2].name, "Choose ypur weapon");
+
+            switch(input)
+            {
+                case '1':
+                    player.EquipItem(0);
+                    break;
+
+                case '2':
+                    player.EquipItem(1);
+                    break;
+
+                case '3':
+                    player.EquipItem(2);
+                    break;
+            }
+
         }
 
         public void StartBattle()
@@ -121,18 +158,21 @@ namespace HelloWorld
                 //Player 1 turn start
                 //Get player input
                 char input;
-                GetInput(out input, "Attack", "Defend", "BEG FOR MERCY", "Your turn Player 1");
+                GetInput(out input, "Attack", "Change Weapon", "BEG FOR MERCY", "Your turn Player 1");
 
                 if (input == '1')
                 {
                     _player1.Attack(_player2);
                 }
+
+
+
                 else
                 {
                     Console.WriteLine("BEG FOR MERCY");
                 }
 
-                GetInput(out input, "Attack", "Defend", "BEG FOR MERCY", "Your turn Player 2");
+                GetInput(out input, "Attack", "Change Weapon", "BEG FOR MERCY", "Your turn Player 2");
 
                 if (input == '1')
                 {
@@ -166,7 +206,7 @@ namespace HelloWorld
                 Console.WriteLine("Enemy");
                 _slime.PrintStats();
                 char input;
-                GetInput(out input, "Attack", "Defend", "BEG FOR MERCY", "What will you do?");
+                GetInput(out input, "Attack", "Change Weapon", "BEG FOR MERCY", "What will you do?");
 
                 if (input == '1')
                 {
