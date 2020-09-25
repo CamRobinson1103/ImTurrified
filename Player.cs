@@ -12,14 +12,7 @@ namespace HelloWorld
         private Item _currentWeapon;
         private Item _hands; 
 
-        public Player()
-        {
-            _inventory = new Item[3];
-            _health = 100;
-            _baseDamage = 10;
-            _hands.name = "These God-given hands";
-            _hands.statBoost = 0;
-        }
+       
 
         public Player(string nameVal, int healthVal, int damageVal, int InventorySize)
         {

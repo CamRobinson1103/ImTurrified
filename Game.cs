@@ -25,6 +25,7 @@ namespace HelloWorld
         private Item _cherryBomb;
         private Item[] _inventory;
         private Item currentWeapon;
+        public Wizard wizard;
 
 
 
